@@ -33,7 +33,7 @@ Vagrant.configure("2") do |config|
 		subconfig.vm.box = "centos/7"
 		subconfig.ssh.forward_agent = true
 		subconfig.vm.network "private_network", ip: "192.168.50.62"
-		subconfig.vm.network "forwarded_port", guest: 8080, host: 8080
+		subconfig.vm.network "forwarded_port", guest: 8081, host: 8081
 		subconfig.vm.synced_folder ".", "/shared_folder", type: "virtualbox"
 		subconfig.vm.provider "virtualbox" do |vb|
 			vb.name = "VM2"
@@ -60,7 +60,7 @@ Vagrant.configure("2") do |config|
 		subconfig.vm.box = "centos/7"
 		subconfig.ssh.forward_agent = true
 		subconfig.vm.network "private_network", ip: "192.168.50.63"
-		subconfig.vm.network "forwarded_port", guest: 8080, host: 8080
+		subconfig.vm.network "forwarded_port", guest: 8082, host: 8082
 		subconfig.vm.synced_folder ".", "/shared_folder", type: "virtualbox"
 		subconfig.vm.provider "virtualbox" do |vb|
 			vb.name = "VM3"
