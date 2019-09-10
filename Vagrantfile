@@ -16,15 +16,14 @@ Vagrant.configure("2") do |config|
 		
 		subconfig.vm.provision "shell", inline: <<-SHELL 
 			echo "---------------------------------------------------"
-			echo " -- Masina cu CentOS, Git, Java, Maven, Jenkins -- "
+			echo " -- Ansible and venv. -- "
 			echo "---------------------------------------------------"
-			# Hey there! our jorney starts with the mandatory update
 			yum -y update
-			# Followed by the SSH configuration
+			# SSH configuration
 			cp /shared_folder/id_rsa /home/vagrant/.ssh/id_rsa;cd /home/vagrant/.ssh;sudo chown vagrant:vagrant id_rsa;sudo chmod 600 id_rsa;
 			cp /shared_folder/config /home/vagrant/.ssh/config;cd /home/vagrant/.ssh;sudo chown vagrant:vagrant config;sudo chmod 644 config;
 			echo "--SSH Key configuration--"
-			pub_key=$( cat /shared_folder_GJMJ/id_rsa.pub )
+			pub_key=$( cat /shared_folder/id_rsa.pub )
 			grep -q -F "$pub_key" /home/vagrant/.ssh/authorized_keys || echo "$pub_key" >> /home/vagrant/.ssh/authorized_keys
 
 			SHELL
@@ -45,14 +44,13 @@ Vagrant.configure("2") do |config|
 			end
 		subconfig.vm.provision "shell", inline: <<-SHELL 
 			echo "---------------------------------------------------"
-			echo " -- Masina cu CentOS, Java, Apache, Tomcat -- "
+			echo " -- Masina cu Ansible roles. -- "
 			echo "---------------------------------------------------"
-			# Again the update
 			yum -y update
-			# and the SSH configuration
-			cp /shared_folder_JAT/id_rsa /home/vagrant/.ssh/id_rsa;cd /home/vagrant/.ssh;sudo chown vagrant:vagrant id_rsa;sudo chmod 600 id_rsa;
-			cp /shared_folder_JAT/config /home/vagrant/.ssh/config;cd /home/vagrant/.ssh;sudo chown vagrant:vagrant config;sudo chmod 644 config;
-			pub_key=$( cat /shared_folder_JAT/id_rsa.pub )
+			# SSH configuration
+			cp /shared_folder/id_rsa /home/vagrant/.ssh/id_rsa;cd /home/vagrant/.ssh;sudo chown vagrant:vagrant id_rsa;sudo chmod 600 id_rsa;
+			cp /shared_folder/config /home/vagrant/.ssh/config;cd /home/vagrant/.ssh;sudo chown vagrant:vagrant config;sudo chmod 644 config;
+			pub_key=$( cat /shared_folder/id_rsa.pub )
 			grep -q -F "$pub_key" /home/vagrant/.ssh/authorized_keys || echo "$pub_key" >> /home/vagrant/.ssh/authorized_keys
 			chown vagrant:vagrant /home/vagrant/ -R
 			
@@ -73,14 +71,13 @@ Vagrant.configure("2") do |config|
 			end
 		subconfig.vm.provision "shell", inline: <<-SHELL 
 			echo "---------------------------------------------------"
-			echo " -- Masina cu  -- "
+			echo " -- Masina cu private registry , Nexus si Docker.  -- "
 			echo "---------------------------------------------------"
-			# Again the update
 			yum -y update
-			# and the SSH configuration
-			cp /shared_folder_JAT/id_rsa /home/vagrant/.ssh/id_rsa;cd /home/vagrant/.ssh;sudo chown vagrant:vagrant id_rsa;sudo chmod 600 id_rsa;
-			cp /shared_folder_JAT/config /home/vagrant/.ssh/config;cd /home/vagrant/.ssh;sudo chown vagrant:vagrant config;sudo chmod 644 config;
-			pub_key=$( cat /shared_folder_JAT/id_rsa.pub )
+			# SSH configuration
+			cp /shared_folder/id_rsa /home/vagrant/.ssh/id_rsa;cd /home/vagrant/.ssh;sudo chown vagrant:vagrant id_rsa;sudo chmod 600 id_rsa;
+			cp /shared_folder/config /home/vagrant/.ssh/config;cd /home/vagrant/.ssh;sudo chown vagrant:vagrant config;sudo chmod 644 config;
+			pub_key=$( cat /shared_folder/id_rsa.pub )
 			grep -q -F "$pub_key" /home/vagrant/.ssh/authorized_keys || echo "$pub_key" >> /home/vagrant/.ssh/authorized_keys
 			chown vagrant:vagrant /home/vagrant/ -R
 			
